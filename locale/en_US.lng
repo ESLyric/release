@@ -261,7 +261,7 @@
 260=regex match
 261=wildcard match
 262=Playing in fullscreen...
-263=Title : %title% $crlf() Artist : $if2(%artist%, Unknown Artist) $crlf() Album : $if2(%album%, Unknown Album)
+263=Title : %title% $crlf()Artist : $if2(%artist%, Unknown Artist) $crlf()Album : $if2(%album%, Unknown Album)
 264=Main menu
 265=Pause
 266=Previous
@@ -334,3 +334,5 @@
 333=Currently editing lyric has saved to file:\r\n%s\r\n\r\nWhether to delete the lyric file:\r\n%s 
 334=Associate this lyric
 335=FB2K ESLyric
+336=Utility
+337=Encoding
