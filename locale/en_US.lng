@@ -21,8 +21,6 @@
 20=Hide when has other fullscreen window
 21=Lock the location
 22=<a>Feedback</a>
-23=Preprocess the search keywords when search automatically
-24=Search preprocessor
 25=Lyric Sources
 26=Lyric Display
 27=Lyric Save
@@ -143,8 +141,6 @@
 142=Lyric source cannot be recovered after deletion
 143=Association Management
 144=Apply
-145=Search preprocessor is used to process the keyword for searching, enabled only when search automatically.
-146=Current preprocessor:
 147=Lyric Editor
 148=Play
 149=Jump to current line
@@ -164,9 +160,7 @@
 163=Configuration
 164=Image
 165=Choose the best matched lyric currently
-166=Pop-up the window if search finished
 167=Pesudo transparent
-168=Choose the best matched lyric if search finished
 169=Move up
 170=Move down
 171=Delete
@@ -239,7 +233,6 @@
 238=Stop execute
 239=Karaoke mode
 240=Default
-241=Pop-up the window if only unmatched lyrics found
 242=Association Management
 243=Genre
 244=Automatic association when opened manually
@@ -336,3 +329,15 @@
 335=FB2K ESLyric
 336=Utility
 337=Encoding
+338=TB Skin:
+339=Auto detect
+340=ToolBar Skin
+341=Enable advanced search settings
+342=Search Settings
+343=Current Preprocessor:
+344=Enable script
+345=Search Fields
+346=Search Field Preprocessors
+347=Pop-up the window if search finished
+348=Choose the best matched lyric if search finished
+349=Pop-up the window if only unmatched lyrics found
