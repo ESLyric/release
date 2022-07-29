@@ -341,3 +341,4 @@
 347=Pop-up the window if search finished
 348=Choose the best matched lyric if search finished
 349=Pop-up the window if only unmatched lyrics found
+350=Skip remaining sources if found lyrics when search automatically
