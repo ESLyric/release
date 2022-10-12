@@ -396,5 +396,7 @@
 410=Directory
 411=Search recursively
 412=Association
-413=Filter rules
 414=Filter
+415=Misc
+416=Apply to ref lyric only when convert simp-trad Chinese
+417=Manage rules
