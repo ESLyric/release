@@ -407,3 +407,15 @@
 422=Prev lyric
 423=Next lyric
 424=You can't undo after deleting lyric, continue?
+425=Copy as std. lyric
+426=Copy std. timestamps only
+427=Title format path
+428=Edit
+429=Save path is empty, save lyric failed.
+430=Cannot get current playing lyric, save lyric failed.
+431=Cannot get current playing track, save lyric failed.
+432=Playing lyric is empty, save lyric skip.
+433=Subindex exists, cannot save to tag.
+434=Unrecognize path, cannot save to tag.
+435=File is read-only, cannot save to tag.
+436=Save lyric failed
