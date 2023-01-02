@@ -419,3 +419,10 @@
 434=Unrecognize path, cannot save to tag.
 435=File is read-only, cannot save to tag.
 436=Save lyric failed
+437=Off
+438=On
+439=Always on
+440=On when show enhanced lyric
+441=Double line center
+442=Double line L-R
+443=Display mode
