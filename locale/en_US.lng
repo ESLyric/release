@@ -436,7 +436,7 @@
 465=Properly processing search fields can usually improve the probability and match rate of finding lyrics:
 466=Filter this track
 467=Reload background image
-468=Save settings
+468=Save Settings
 469=Parameter 1
 470=Parameter 2
 471=Add
@@ -452,9 +452,11 @@
 481=Invalid or incompatible script file
 482=Script file has been imported and is up to date
 483=Failed
-484=Search settings
+484=Search Settings
 485=Lyric content has been modified, do you want to save?
 486=File name template
 487=Value
 488=Reset position
 490=Center when show alt lyrics
+491=Lyric Settings
+492=Unsync lyric when play internet radio
