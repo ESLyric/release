@@ -429,7 +429,6 @@
 458=-
 459=Processing settings
 460=Process lyric content, check to apply automatically (not applicable to enhanced lyrics):
-461=Items in the list will be displayed in the panel's right-click menu
 462=Custom search fields
 463=Automatic lyric search will not be performed if any of the following conditions are met:
 464=Field processing
@@ -462,3 +461,6 @@
 492=Unsync lyric when play internet radio
 493=Scope
 494=All
+495=Tip: This action will delete online lyrics with the same content and load other available lyrics to display. \r\n If Auto Save is configured, the current save location may be re-deposited with new lyrics.
+496=Convert to standard format
+497=The list of items will be displayed in the panel context menu 'Lyrics Processor'.
