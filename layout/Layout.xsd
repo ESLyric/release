@@ -254,6 +254,7 @@
                 <xs:element name="albumart" type="layout-albumart" minOccurs="0" maxOccurs="unbounded"></xs:element>
                 <xs:element name="lyric" type="layout-lyric" minOccurs="1" maxOccurs="1"></xs:element>
                 <xs:element name="button" type="layout-button" minOccurs="0" maxOccurs="unbounded"></xs:element>
+                <xs:element name="seekbar" type="layout-seekbar" minOccurs="0" maxOccurs="unbounded"></xs:element>
             </xs:choice>
         </xs:sequence>
         <xs:attributeGroup ref="attri-common"></xs:attributeGroup>
@@ -302,6 +303,15 @@
         </xs:annotation>
         <xs:attributeGroup ref="attri-common"></xs:attributeGroup>
         <xs:attributeGroup ref="attri-button"></xs:attributeGroup>
+    </xs:complexType>
+
+    <xs:complexType name="layout-seekbar">
+        <xs:annotation>
+            <xs:documentation xml:lang="zh">进度布局元素</xs:documentation>
+            <xs:documentation xml:lang="en"></xs:documentation>
+        </xs:annotation>
+        <xs:attributeGroup ref="attri-common"></xs:attributeGroup>
+        <xs:attributeGroup ref="attri-progress-bar"></xs:attributeGroup>
     </xs:complexType>
 
     <!--element attributes-->
@@ -445,6 +455,12 @@
         <xs:attribute name="aspect-ratio" type="xs:float">
             <xs:annotation>
                 <xs:documentation xml:lang="zh">布局元素宽高比, 1.0时表示保持宽高一致, 需要设置其中任意一个值, 同时设置时优先使用宽度来计算高度</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="background-color" type="layout-color-type">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">背景色, 部分布局元素中有效</xs:documentation>
                 <xs:documentation xml:lang="en"></xs:documentation>
             </xs:annotation>
         </xs:attribute>
@@ -645,6 +661,21 @@
                 <xs:documentation xml:lang="zh">按钮图片, 使用相对布局XML文件的路径</xs:documentation>
                 <xs:documentation xml:lang="zh">设置后将自动将图片同目录下文件名带'_hover'后缀的图片作为鼠标悬浮状态图片</xs:documentation>
                 <xs:documentation xml:lang="zh">如设置为'images/play.png'时,则同时自动加载'images/play_hover.png'(如果有)</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="attri-progress-bar">
+        <xs:attribute name="foreground-color" type="layout-color-type">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">前景色</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="radius" type="xs:integer">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">圆角半径</xs:documentation>
                 <xs:documentation xml:lang="en"></xs:documentation>
             </xs:annotation>
         </xs:attribute>
