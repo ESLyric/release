@@ -558,6 +558,12 @@
                 <xs:documentation xml:lang="en"></xs:documentation>
             </xs:annotation>
         </xs:attribute>
+        <xs:attribute name="always-eval" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">设置'true'时始终测试caption中的标题格式表达式而不依赖是否正在播放</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:attributeGroup>
 
     <xs:attributeGroup name="attri-albumart">
