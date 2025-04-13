@@ -388,7 +388,7 @@
 387=%
 388=Scroll time as % of next line's duration
 389=Duration Limit
-390=(0=default)
+390=(0 为默认值)
 391=Reset defaults
 392=Trim leading spaces
 393=Played color
@@ -466,3 +466,5 @@
 465=Help
 466=Control by layout
 467=Open containing folder
+468=Warp lyric line
+469=Bold for highlighted lyric
