@@ -100,6 +100,14 @@
         </xs:restriction>
     </xs:simpleType>
 
+    <xs:simpleType name="layout-text-valign-type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="top"></xs:enumeration>
+            <xs:enumeration value="middle"></xs:enumeration>
+            <xs:enumeration value="bottom"></xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
     <xs:simpleType name="layout-int-type">
         <xs:union>
             <xs:simpleType>
@@ -142,7 +150,7 @@
             <xs:simpleType>
                 <xs:restriction base="xs:string">
                     <!--rgb(r,g,b,a)-->
-                    <xs:pattern value="rgba\( *\d+ *, *\d+ *, *\d+ *, *(0|1|0?\.\d+)\)"></xs:pattern>
+                    <xs:pattern value="rgba\( *\d+ *, *\d+ *, *\d+ *, *(0|1|[0|1]?\.\d+)\)"></xs:pattern>
                 </xs:restriction>
             </xs:simpleType>
             <xs:simpleType>
@@ -478,7 +486,13 @@
     <xs:attributeGroup name="attri-text">
         <xs:attribute name="text-align" type="layout-text-align-type">
             <xs:annotation>
-                <xs:documentation xml:lang="zh">文本对齐方式</xs:documentation>
+                <xs:documentation xml:lang="zh">文本水平对齐方式</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="text-valign" type="layout-text-valign-type">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">文本垂直对齐方式</xs:documentation>
                 <xs:documentation xml:lang="en"></xs:documentation>
             </xs:annotation>
         </xs:attribute>
@@ -577,6 +591,24 @@
         <xs:attribute name="always-eval" type="xs:boolean">
             <xs:annotation>
                 <xs:documentation xml:lang="zh">设置'true'时始终测试caption中的标题格式表达式而不依赖是否正在播放</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="stroke" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">文本轮廓, 未设置时跟随面板设置</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="stroke-width" type="xs:int">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">文本轮廓宽度, 未设置时跟随面板设置</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="stroke-color" type="layout-color-type">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">文本轮廓颜色, 未设置时跟随面板设置</xs:documentation>
                 <xs:documentation xml:lang="en"></xs:documentation>
             </xs:annotation>
         </xs:attribute>
