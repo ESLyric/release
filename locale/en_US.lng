@@ -469,3 +469,6 @@
 468=Warp lyric line
 469=Bold for highlighted lyric
 470=Pseudo transparent
+471=General settings
+472=Enable multi-threaded rendering (experimental)
+473=Frame rate
