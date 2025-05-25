@@ -219,6 +219,7 @@
     <xs:complexType name="layout-container">
         <xs:sequence>
             <xs:choice minOccurs="1" maxOccurs="unbounded">
+                <xs:element name="tooltip" type="layout-tooltip" minOccurs="0" maxOccurs="1"></xs:element>
                 <xs:element name="container" type="layout-container" minOccurs="0" maxOccurs="unbounded"></xs:element>
                 <xs:element name="label" type="layout-label" minOccurs="0" maxOccurs="unbounded"></xs:element>
                 <xs:element name="albumart" type="layout-albumart" minOccurs="0" maxOccurs="unbounded"></xs:element>
@@ -247,6 +248,17 @@
         <xs:attributeGroup ref="attri-common"></xs:attributeGroup>
         <xs:attributeGroup ref="attri-text"></xs:attributeGroup>
         <xs:attributeGroup ref="attri-label"></xs:attributeGroup>
+    </xs:complexType>
+
+    <xs:complexType name="layout-tooltip">
+        <xs:annotation>
+            <xs:documentation xml:lang="zh">布局元素提示</xs:documentation>
+            <xs:documentation xml:lang="en"></xs:documentation>
+        </xs:annotation>
+        <xs:attributeGroup ref="attri-common"></xs:attributeGroup>
+        <xs:attributeGroup ref="attri-text"></xs:attributeGroup>
+        <xs:attributeGroup ref="attri-label"></xs:attributeGroup>
+        <xs:attributeGroup ref="attri-tooltip"></xs:attributeGroup>
     </xs:complexType>
 
     <xs:complexType name="layout-albumart">
@@ -460,6 +472,12 @@
                 <xs:documentation xml:lang="en"></xs:documentation>
             </xs:annotation>
         </xs:attribute>
+        <xs:attribute name="tooltip-padding" type="xs:int">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">显示提示信息额外间距</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:attributeGroup>
 
     <xs:attributeGroup name="attri-container">
@@ -614,6 +632,21 @@
         </xs:attribute>
     </xs:attributeGroup>
 
+    <xs:attributeGroup name="attri-tooltip">
+        <xs:attribute name="animate" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">动画显隐提示</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="padding" type="xs:int">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh"></xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:attributeGroup>
+
     <xs:attributeGroup name="attri-albumart">
         <xs:attribute name="album-art" type="layout-cover-type">
             <xs:annotation>
@@ -660,6 +693,24 @@
         <xs:attribute name="stub" type="xs:string">
             <xs:annotation>
                 <xs:documentation xml:lang="zh">使用相对路径的图片作为固定的stub封面, 设置后无封面时将始终显示, 与'use-stub'无关</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="shadow" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">是否启用阴影</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="shadow-color" type="layout-color-type">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">阴影颜色</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="shadow-intensity" type="xs:int">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">阴影强度</xs:documentation>
                 <xs:documentation xml:lang="en"></xs:documentation>
             </xs:annotation>
         </xs:attribute>
@@ -750,6 +801,12 @@
         <xs:attribute name="vertical" type="xs:boolean">
             <xs:annotation>
                 <xs:documentation xml:lang="zh">垂直显示</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="show-lyric-tooltip" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">显示歌词提示</xs:documentation>
                 <xs:documentation xml:lang="en"></xs:documentation>
             </xs:annotation>
         </xs:attribute>
