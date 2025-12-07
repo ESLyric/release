@@ -228,6 +228,7 @@
                 <xs:element name="seekbar" type="layout-seekbar" minOccurs="0" maxOccurs="unbounded"></xs:element>
                 <xs:element name="volume" type="layout-volume" minOccurs="0" maxOccurs="unbounded"></xs:element>
                 <xs:element name="visualization" type="layout-visualization" minOccurs="0" maxOccurs="unbounded"></xs:element>
+                <xs:element name="image" type="layout-image" minOccurs="0" maxOccurs="unbounded"></xs:element>
             </xs:choice>
         </xs:sequence>
         <xs:attributeGroup ref="attri-common"></xs:attributeGroup>
@@ -314,6 +315,14 @@
         </xs:annotation>
         <xs:attributeGroup ref="attri-common"></xs:attributeGroup>
         <xs:attributeGroup ref="attri-visualization"></xs:attributeGroup>
+    </xs:complexType>
+
+    <xs:complexType name="layout-image">
+        <xs:annotation>
+            <xs:documentation xml:lang="zh">图片布局元素</xs:documentation>
+            <xs:documentation xml:lang="en"></xs:documentation>
+        </xs:annotation>
+        <xs:attributeGroup ref="attri-common"></xs:attributeGroup>
     </xs:complexType>
 
     <!--element attributes-->
@@ -709,6 +718,18 @@
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="shadow-intensity" type="xs:int">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">阴影强度</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="mask" type="xs:string">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh"></xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="rotate" type="xs:boolean">
             <xs:annotation>
                 <xs:documentation xml:lang="zh">阴影强度</xs:documentation>
                 <xs:documentation xml:lang="en"></xs:documentation>
