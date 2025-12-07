@@ -12,7 +12,7 @@
 11=Show desktop lyric
 12=Desktop lyric always on top
 13=Hide when no synced lyrics
-14=Hide on playback pause
+14=Hide when playback is paused
 15=Hide when other fullscreen app active
 16=Lock position
 17=<a>Feedback</a>
@@ -32,7 +32,7 @@
 31=Script Search Settings
 32=Set default action to open with editor
 33=<a>? </a>
-34=Display
+34=Show
 35=Font & Color
 36=Background
 37=Normal
@@ -479,3 +479,10 @@
 478=Lock
 479=Use Direct Composition *
 480=* Requires foobar2000 to be restarted.
+481=Floating lyric always on top
+482=Lock position
+483=Hide when other fullscreen app active
+484=Hide when playback is paused
+485=Show floating lyric
+486=Hide when no synced lyrics
+487=Display
