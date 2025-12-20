@@ -469,9 +469,23 @@
                 <xs:documentation xml:lang="en"></xs:documentation>
             </xs:annotation>
         </xs:attribute>
+        <xs:attribute name="background" type="xs:string">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">按钮图片, 使用相对布局XML文件的路径</xs:documentation>
+                <xs:documentation xml:lang="zh">部分元素(button)设置后将自动将图片同目录下文件名带'_hover'后缀的图片作为鼠标悬浮状态图片</xs:documentation>
+                <xs:documentation xml:lang="zh">如设置为'images/play.png'时,则同时自动加载'images/play_hover.png'(如果有)</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
         <xs:attribute name="background-color" type="layout-color-type">
             <xs:annotation>
                 <xs:documentation xml:lang="zh">背景色, 部分布局元素中有效</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="background-slice" type="xs:string">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">背景图片切片(left,top,right,bottom)</xs:documentation>
                 <xs:documentation xml:lang="en"></xs:documentation>
             </xs:annotation>
         </xs:attribute>
@@ -725,13 +739,19 @@
         </xs:attribute>
         <xs:attribute name="mask" type="xs:string">
             <xs:annotation>
-                <xs:documentation xml:lang="zh"></xs:documentation>
+                <xs:documentation xml:lang="zh">遮罩图片</xs:documentation>
                 <xs:documentation xml:lang="en"></xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="rotate" type="xs:boolean">
             <xs:annotation>
-                <xs:documentation xml:lang="zh">阴影强度</xs:documentation>
+                <xs:documentation xml:lang="zh">是否启用旋转</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="rotate-speed" type="xs:int">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">旋转速度</xs:documentation>
                 <xs:documentation xml:lang="en"></xs:documentation>
             </xs:annotation>
         </xs:attribute>
@@ -754,14 +774,6 @@
 
     <xs:attributeGroup name="attri-button">
         <xs:attributeGroup ref="attri-command"></xs:attributeGroup>
-        <xs:attribute name="background" type="xs:string">
-            <xs:annotation>
-                <xs:documentation xml:lang="zh">按钮图片, 使用相对布局XML文件的路径</xs:documentation>
-                <xs:documentation xml:lang="zh">设置后将自动将图片同目录下文件名带'_hover'后缀的图片作为鼠标悬浮状态图片</xs:documentation>
-                <xs:documentation xml:lang="zh">如设置为'images/play.png'时,则同时自动加载'images/play_hover.png'(如果有)</xs:documentation>
-                <xs:documentation xml:lang="en"></xs:documentation>
-            </xs:annotation>
-        </xs:attribute>
     </xs:attributeGroup>
 
     <xs:attributeGroup name="attri-progress-bar">
