@@ -159,6 +159,12 @@
                     <xs:pattern value="#[0-9A-Fa-f]{6}"></xs:pattern>
                 </xs:restriction>
             </xs:simpleType>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <!--builtin colors-->
+                    <xs:pattern value="\{(HIGHLIGHT|NORMAL|BACKGROUND)\}"></xs:pattern>
+                </xs:restriction>
+            </xs:simpleType>
         </xs:union>
     </xs:simpleType>
 
@@ -201,6 +207,14 @@
         </xs:restriction>
     </xs:simpleType>
 
+    <xs:simpleType name="layout-visual-spectrum-type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="classic"></xs:enumeration>
+            <xs:enumeration value="simple-bar"></xs:enumeration>
+            <xs:enumeration value="wave"></xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
     <!-- xml element -->
     <xs:complexType name="layout-panel">
         <xs:complexContent>
@@ -229,6 +243,7 @@
                 <xs:element name="volume" type="layout-volume" minOccurs="0" maxOccurs="unbounded"></xs:element>
                 <xs:element name="visualization" type="layout-visualization" minOccurs="0" maxOccurs="unbounded"></xs:element>
                 <xs:element name="image" type="layout-image" minOccurs="0" maxOccurs="unbounded"></xs:element>
+                <xs:element name="props" minOccurs="0" maxOccurs="unbounded"></xs:element>
             </xs:choice>
         </xs:sequence>
         <xs:attributeGroup ref="attri-common"></xs:attributeGroup>
@@ -297,6 +312,7 @@
         </xs:annotation>
         <xs:attributeGroup ref="attri-common"></xs:attributeGroup>
         <xs:attributeGroup ref="attri-progress-bar"></xs:attributeGroup>
+        <xs:attributeGroup ref="attri-seek-bar"></xs:attributeGroup>
     </xs:complexType>
 
     <xs:complexType name="layout-volume">
@@ -330,6 +346,12 @@
         <xs:attribute name="name" type="xs:string">
             <xs:annotation>
                 <xs:documentation xml:lang="zh">panel布局元素的name用于显示布局名称, 其他布局元素name属性当前仅在勾选显示布局标识时显示</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="props" type="xs:string">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">引用属性</xs:documentation>
                 <xs:documentation xml:lang="en"></xs:documentation>
             </xs:annotation>
         </xs:attribute>
@@ -668,6 +690,12 @@
                 <xs:documentation xml:lang="en"></xs:documentation>
             </xs:annotation>
         </xs:attribute>
+        <xs:attribute name="native" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">使用系统原生提示控件</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
     </xs:attributeGroup>
 
     <xs:attributeGroup name="attri-albumart">
@@ -749,7 +777,7 @@
                 <xs:documentation xml:lang="en"></xs:documentation>
             </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="rotate-speed" type="xs:int">
+        <xs:attribute name="rotate-speed" type="xs:float">
             <xs:annotation>
                 <xs:documentation xml:lang="zh">旋转速度</xs:documentation>
                 <xs:documentation xml:lang="en"></xs:documentation>
@@ -837,9 +865,18 @@
                 <xs:documentation xml:lang="en"></xs:documentation>
             </xs:annotation>
         </xs:attribute>
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="attri-seek-bar">
         <xs:attribute name="show-lyric-tooltip" type="xs:boolean">
             <xs:annotation>
                 <xs:documentation xml:lang="zh">显示歌词提示</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="free-seek" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">显示歌词提示时自由定位</xs:documentation>
                 <xs:documentation xml:lang="en"></xs:documentation>
             </xs:annotation>
         </xs:attribute>
@@ -852,27 +889,100 @@
                 <xs:documentation xml:lang="en"></xs:documentation>
             </xs:annotation>
         </xs:attribute>
+        <xs:attribute name="spectrum" type="layout-visual-spectrum-type">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">频谱类型</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
         <xs:attribute name="bands" type="xs:int">
             <xs:annotation>
                 <xs:documentation xml:lang="zh">频带</xs:documentation>
+                <xs:documentation xml:lang="zh">可用频谱类型: classic</xs:documentation>
                 <xs:documentation xml:lang="en"></xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="segs" type="xs:int">
             <xs:annotation>
                 <xs:documentation xml:lang="zh">频带分段</xs:documentation>
+                <xs:documentation xml:lang="zh">可用频谱类型: classic</xs:documentation>
                 <xs:documentation xml:lang="en"></xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="lo-color" type="layout-color-type">
             <xs:annotation>
                 <xs:documentation xml:lang="zh">频带颜色1</xs:documentation>
+                <xs:documentation xml:lang="zh">可用频谱类型: classic</xs:documentation>
                 <xs:documentation xml:lang="en"></xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="hi-color" type="layout-color-type">
             <xs:annotation>
                 <xs:documentation xml:lang="zh">频带颜色2</xs:documentation>
+                <xs:documentation xml:lang="zh">可用频谱类型: classic</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="mirror" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">镜像</xs:documentation>
+                <xs:documentation xml:lang="zh">可用频谱类型: classic</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="bar-color" type="layout-color-type">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">频带颜色</xs:documentation>
+                <xs:documentation xml:lang="zh">可用频谱类型: simple-bar</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="thickness" type="xs:float">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">轮廓宽度</xs:documentation>
+                <xs:documentation xml:lang="zh">可用频谱类型: wave</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="grow" type="xs:float">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">轮廓辉光</xs:documentation>
+                <xs:documentation xml:lang="zh">可用频谱类型: wave</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="grow-radius" type="xs:float">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">轮廓辉光半径</xs:documentation>
+                <xs:documentation xml:lang="zh">可用频谱类型: wave</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="back-color" type="layout-color-type">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">填充颜色</xs:documentation>
+                <xs:documentation xml:lang="zh">可用频谱类型: wave</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+                <xs:attribute name="back-outline-color" type="layout-color-type">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">轮廓颜色</xs:documentation>
+                <xs:documentation xml:lang="zh">可用频谱类型: wave</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+                <xs:attribute name="front-color" type="layout-color-type">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">填充颜色</xs:documentation>
+                <xs:documentation xml:lang="zh">可用频谱类型: wave</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+                <xs:attribute name="front-outline-color" type="layout-color-type">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">轮廓颜色</xs:documentation>
+                <xs:documentation xml:lang="zh">可用频谱类型: wave</xs:documentation>
                 <xs:documentation xml:lang="en"></xs:documentation>
             </xs:annotation>
         </xs:attribute>
