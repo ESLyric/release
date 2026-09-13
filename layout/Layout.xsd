@@ -162,7 +162,7 @@
             <xs:simpleType>
                 <xs:restriction base="xs:string">
                     <!--builtin colors-->
-                    <xs:pattern value="\{(HIGHLIGHT|NORMAL|BACKGROUND)\}"></xs:pattern>
+                    <xs:pattern value="\{(HIGHLIGHT|DOMINANT-COLOR|DOMINANT-COLOR[1-5])\}"></xs:pattern>
                 </xs:restriction>
             </xs:simpleType>
         </xs:union>
@@ -212,6 +212,7 @@
             <xs:enumeration value="classic"></xs:enumeration>
             <xs:enumeration value="simple-bar"></xs:enumeration>
             <xs:enumeration value="wave"></xs:enumeration>
+            <xs:enumeration value="wave2"></xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
 
@@ -505,9 +506,58 @@
                 <xs:documentation xml:lang="en"></xs:documentation>
             </xs:annotation>
         </xs:attribute>
+        <xs:attribute name="transition" type="xs:string">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">属性过渡动画, CSS风格: transition="size 300ms cubic-out, background-color 150ms"</xs:documentation>
+                <xs:documentation xml:lang="zh">每项由 属性名 [时长] [缓动] 组成, 逗号分隔多项; 时长支持 ms/s(如 300ms, 0.3s), 省略默认 260ms; 缓动省略默认 ease</xs:documentation>
+                <xs:documentation xml:lang="zh">属性名: width, height, margin-left, margin-top, margin-right, margin-bottom, background-color, transform; 简写: size(宽高), location(四边距), all(全部)</xs:documentation>
+                <xs:documentation xml:lang="zh">缓动: linear, ease, ease-in, ease-in-out, ease-out, 或 sinusoidal/quadratic/cubic/quartic/quintic/exponential/circular/back/elastic/bounce 加 -in/-out/-in-out 后缀</xs:documentation>
+                <xs:documentation xml:lang="zh">触发时机: 元素折叠/展开时(hide-empty内容为空或visibility表达式), 其布局槽位(size+边距)在0与目标值间缓动, 兄弟元素随之平滑重排</xs:documentation>
+                <xs:documentation xml:lang="zh">不触发: 窗口resize, DPI变化, 布局首次加载(首帧即时落定)</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="transform" type="xs:string">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">渲染侧变换, CSS风格: transform="scale(0.96) :hover scale(1.08) :pressed scale(0.98)"</xs:documentation>
+                <xs:documentation xml:lang="zh">函数: scale(s | sx,sy), translate(x [,y], DIP单位), rotate(deg); 无前缀为基值, :hover/:pressed/:disabled 为状态覆盖</xs:documentation>
+                <xs:documentation xml:lang="zh">只影响渲染, 不参与布局与命中测试; 以元素中心为原点; 放大溢出槽位需配 clip="none"; 当前仅叶子元素生效</xs:documentation>
+                <xs:documentation xml:lang="zh">状态切换的过渡由 transition 的 transform 项控制, 未声明则即时切换</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
         <xs:attribute name="background-slice" type="xs:string">
             <xs:annotation>
                 <xs:documentation xml:lang="zh">背景图片切片(left,top,right,bottom)</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="border-radius" type="xs:int">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">边框圆角半径, 同时裁剪背景色和背景图片</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="border-width" type="xs:int">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">边框宽度, 设置border-color但未设置此项时默认为1</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="border-color" type="layout-color-type">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">边框颜色, 设置border-width但未设置此项时默认为高亮色</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="box-shadow" type="xs:string">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">阴影(辉光), CSS风格, 单层: box-shadow="0 10px 26px rgba(255,94,138,.4)"</xs:documentation>
+                <xs:documentation xml:lang="zh">格式: 偏移x 偏移y 模糊半径 [扩散] 颜色; 长度单位DIP(可省略px); 颜色支持全部布局颜色格式(如{highlight}, {dominant-color}); 颜色可置于最前</xs:documentation>
+                <xs:documentation xml:lang="zh">状态覆盖与transform一致: 无前缀为基值, :hover/:pressed/:disabled 覆盖; hover时在基值与:hover声明间按悬浮进度平滑过渡</xs:documentation>
+                <xs:documentation xml:lang="zh">模糊对应CSS标准(高斯标准差=模糊半径/2); 阴影为元素边框盒形状(含border-radius), 自动溢出槽位不受自身裁剪, 跟随transform变换</xs:documentation>
+                <xs:documentation xml:lang="zh">albumart特殊: 阴影跟随封面实际形状(fitness留白/mask遮罩区域无阴影, 效果同shadow属性), 此时spread不适用</xs:documentation>
+                <xs:documentation xml:lang="zh">适用元素: container/image/button/progressbar/albumart等; 使用"none"可清除</xs:documentation>
                 <xs:documentation xml:lang="en"></xs:documentation>
             </xs:annotation>
         </xs:attribute>
@@ -686,7 +736,7 @@
         </xs:attribute>
         <xs:attribute name="padding" type="xs:int">
             <xs:annotation>
-                <xs:documentation xml:lang="zh"></xs:documentation>
+                <xs:documentation xml:lang="zh">提示内边距</xs:documentation>
                 <xs:documentation xml:lang="en"></xs:documentation>
             </xs:annotation>
         </xs:attribute>
@@ -771,6 +821,12 @@
                 <xs:documentation xml:lang="en"></xs:documentation>
             </xs:annotation>
         </xs:attribute>
+        <xs:attribute name="overlay" type="xs:string">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">覆盖图片, 绘制在封面之上</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
         <xs:attribute name="rotate" type="xs:boolean">
             <xs:annotation>
                 <xs:documentation xml:lang="zh">是否启用旋转</xs:documentation>
@@ -800,8 +856,18 @@
         </xs:attribute>
     </xs:attributeGroup>
 
+    <xs:attributeGroup name="attri-state-image">
+        <xs:attribute name="alpha" type="xs:float">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">图片透明度, 取值范围[0.0, 1.0]</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:attributeGroup>
+
     <xs:attributeGroup name="attri-button">
         <xs:attributeGroup ref="attri-command"></xs:attributeGroup>
+        <xs:attributeGroup ref="attri-state-image"></xs:attributeGroup>
     </xs:attributeGroup>
 
     <xs:attributeGroup name="attri-progress-bar">
@@ -843,13 +909,13 @@
         </xs:attribute>
         <xs:attribute name="track-width" type="xs:integer">
             <xs:annotation>
-                <xs:documentation xml:lang="zh">滑块半径</xs:documentation>
+                <xs:documentation xml:lang="zh">轨道宽度</xs:documentation>
                 <xs:documentation xml:lang="en"></xs:documentation>
             </xs:annotation>
         </xs:attribute>
         <xs:attribute name="track-height" type="xs:integer">
             <xs:annotation>
-                <xs:documentation xml:lang="zh">滑块半径</xs:documentation>
+                <xs:documentation xml:lang="zh">轨道高度</xs:documentation>
                 <xs:documentation xml:lang="en"></xs:documentation>
             </xs:annotation>
         </xs:attribute>
@@ -930,6 +996,48 @@
                 <xs:documentation xml:lang="en"></xs:documentation>
             </xs:annotation>
         </xs:attribute>
+        <xs:attribute name="peak" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">峰值保持线(缓动下降的横条)</xs:documentation>
+                <xs:documentation xml:lang="zh">可用频谱类型: classic</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="peak-color" type="layout-color-type">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">峰值线颜色, 默认跟随 hi-color</xs:documentation>
+                <xs:documentation xml:lang="zh">可用频谱类型: classic</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="peak-height" type="xs:int">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">峰值线高度(px), 默认2</xs:documentation>
+                <xs:documentation xml:lang="zh">可用频谱类型: classic</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="peak-gap" type="xs:int">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">峰值线与柱顶间距(px), 默认0</xs:documentation>
+                <xs:documentation xml:lang="zh">可用频谱类型: classic</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="peak-fall" type="xs:int">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">峰值线缓降时间常数(ms), 指数衰减, 默认500, 0为不降</xs:documentation>
+                <xs:documentation xml:lang="zh">可用频谱类型: classic</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="peak-hold" type="xs:int">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">峰值线到达峰后停留时间(ms), 默认0</xs:documentation>
+                <xs:documentation xml:lang="zh">可用频谱类型: classic</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
         <xs:attribute name="bar-color" type="layout-color-type">
             <xs:annotation>
                 <xs:documentation xml:lang="zh">频带颜色</xs:documentation>
@@ -958,6 +1066,13 @@
                 <xs:documentation xml:lang="en"></xs:documentation>
             </xs:annotation>
         </xs:attribute>
+        <xs:attribute name="fade-width" type="layout-size-type">
+            <xs:annotation>
+                <xs:documentation xml:lang="zh">轮廓两端淡出宽度, 百分比(相对元素宽度)或像素值, 默认0不淡出</xs:documentation>
+                <xs:documentation xml:lang="zh">可用频谱类型: wave</xs:documentation>
+                <xs:documentation xml:lang="en"></xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
         <xs:attribute name="back-color" type="layout-color-type">
             <xs:annotation>
                 <xs:documentation xml:lang="zh">填充颜色</xs:documentation>
@@ -965,21 +1080,21 @@
                 <xs:documentation xml:lang="en"></xs:documentation>
             </xs:annotation>
         </xs:attribute>
-                <xs:attribute name="back-outline-color" type="layout-color-type">
+        <xs:attribute name="back-outline-color" type="layout-color-type">
             <xs:annotation>
                 <xs:documentation xml:lang="zh">轮廓颜色</xs:documentation>
                 <xs:documentation xml:lang="zh">可用频谱类型: wave</xs:documentation>
                 <xs:documentation xml:lang="en"></xs:documentation>
             </xs:annotation>
         </xs:attribute>
-                <xs:attribute name="front-color" type="layout-color-type">
+        <xs:attribute name="front-color" type="layout-color-type">
             <xs:annotation>
                 <xs:documentation xml:lang="zh">填充颜色</xs:documentation>
                 <xs:documentation xml:lang="zh">可用频谱类型: wave</xs:documentation>
                 <xs:documentation xml:lang="en"></xs:documentation>
             </xs:annotation>
         </xs:attribute>
-                <xs:attribute name="front-outline-color" type="layout-color-type">
+        <xs:attribute name="front-outline-color" type="layout-color-type">
             <xs:annotation>
                 <xs:documentation xml:lang="zh">轮廓颜色</xs:documentation>
                 <xs:documentation xml:lang="zh">可用频谱类型: wave</xs:documentation>
